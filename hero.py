@@ -12,6 +12,16 @@ class Hero():
         self.screen_rect = screen.get_rect()
         self.rect.bottom = self.screen_rect.bottom
         self.rect.x = self.screen_rect.centerx
+        
 
     def output_hero(self):
+        if self.rect.x < 0:
+            self.rect.x = 0
+        elif self.rect.x > self.screen_rect.width - self.rect.width:
+            self.rect.x = self.screen_rect.width - self.rect.width
+        if self.rect.y < 0:
+            self.rect.y = 0
+        elif self.rect.y > self.screen_rect.height - self.rect.height:
+            self.rect.y = self.screen_rect.height - self.rect.height
+
         self.screen.blit(self.image, self.rect)

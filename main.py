@@ -8,6 +8,11 @@ def start_game():
     pygame.init()
     screen=pygame.display.set_mode((800,600))
     pygame.display.set_caption("Самая гут игра")
+    bg_color = (255,255,255)
+    screen.fill(bg_color)
+    pygame.display.flip()
+
+
     
     #объекты классов
     hero = Hero(screen)
@@ -27,6 +32,7 @@ def start_game():
                     hero.rect.x -= 10
                 elif event.key == pygame.K_d:
                     hero.rect.x += 10
+            
 
         pygame.display.flip()
         screen.fill((0,0,0))
