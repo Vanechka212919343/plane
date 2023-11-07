@@ -1,39 +1,25 @@
-import pygame
-import sys
+import pygame, controls
 from hero import Hero
+from pygame.sprite import Group
 
 def start_game():
     '''основная функция для описания игры'''
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
+    screen = pygame.display.set_mode((700, 1000))
     pygame.display.set_caption("Space Invaders")
 
-    clock = pygame.time.Clock()
-    FPS = 60
-
+    #объекты классов
     hero = Hero(screen)
+    bullets = Group()
+    inosogradosmexicanos = Group()
 
     flag = True
     while flag:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_d:
-                    hero.moving_right = True
-                if event.key == pygame.K_a:
-                    hero.moving_left = True
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_d:
-                    hero.moving_right = False
-                if event.key == pygame.K_a:
-                    hero.moving_left = False
-
-        hero.update()
-
-        screen.fill(0)
-        hero.output_hero()
-
-        pygame.display.flip()
-        clock.tick(FPS)
+        controls.events(screen, hero, bullets) 
+        hero.moving_hero(screen)
+        controls.update(screen, hero, bullets)
+        controls.update_bullets(screen, hero, bullets)
+        controls.create_army(screen)
+       
+ 
 start_game()
