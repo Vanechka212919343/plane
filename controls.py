@@ -25,7 +25,7 @@ def update(screen, hero, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     hero.output_hero()
-    inosogradosmexicanoss.output.inosogradosmexicanos()
+    enemys.output_enemy()
     pygame.display.flip()
     
 def update_bullets(screen, hero, bullets):
