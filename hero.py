@@ -22,4 +22,7 @@ class Hero():
         if self.move_left and self.rect.left > self.screen_rect.left:
             self.rect.centerx -= 10
 
+    def create_hero_again(self):
+        self.center = self.screen_rect.centerx
+
 
