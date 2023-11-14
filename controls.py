@@ -21,27 +21,32 @@ def events(screen, hero, bullets):
             if event.key == pygame.K_LEFT:
                 hero.move_left = False
 
-def update(screen, hero, bullets, enemys):
+def update(screen, hero, enemys, bullets):
     screen.fill(0)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     hero.output_hero()
-    enemys.update()
+    enemys.draw(screen)
     pygame.display.flip()
 
-def moving_bullets(screen, bullets):
+
+def update_bullets(screen, bullets):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
-def create_army(screen,enemys):
-    enemy = Enemy(screen)
-    enemy_wight = enemy.rect.width
 
-    num_enemy_x = int((600 - 2*enemy_wight) / enemy_wight)
-    for i in range(num_enemy_x):
+def update_enemys(enemys):
+    enemys.update()
+
+
+def create_army(screen, enemys):
+    enemy = Enemy(screen)
+    enemy_width = enemy.rect.width
+    number_enemy_x = int((600 - 2 * enemy_width) / enemy_width)
+    for enemy_num in range(number_enemy_x):
         enemy = Enemy(screen)
-        enemy.x = enemy_wight + enemy_wight * i
+        enemy.x = enemy_width + enemy_width * enemy_num
         enemy.rect.x = enemy.x
         enemys.add(enemy)

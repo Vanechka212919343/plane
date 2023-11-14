@@ -5,13 +5,8 @@ from pygame.sprite import Group
 def start_game():
     '''основная функция для описания игры'''
     pygame.init()
-    screen_width = 800
-    screen_height = 600
-    screen = pygame.display.set_mode((screen_width, screen_height))
-    pygame.display.set_caption("Space Invaders")
-    clock = pygame.time.Clock()
-    background = pygame.image.load("images/background.jpg")
-
+    screen = pygame.display.set_mode((700, 1000))
+    pygame.display.set_caption("Самая лучшая игра")
 
     #объекты классов
     hero = Hero(screen)
@@ -20,22 +15,12 @@ def start_game():
 
     flag = True
     while flag:
-       
         controls.events(screen, hero, bullets)
         hero.moving_hero(screen)
-        controls.update(screen, hero, bullets, enemys)
-        controls.moving_bullets(screen, bullets)
-        controls.create_army(screen, enemys)
-        screen.blit(background, (0, 0))
-        
 
-        
-        pygame.display.update()
-        clock.tick(60)
-
-        
-       
-       
+        controls.update(screen, hero, enemys, bullets)
+        controls.update_bullets(screen, bullets)
+        controls.create_army(screen,enemys)
 
 start_game()
 
